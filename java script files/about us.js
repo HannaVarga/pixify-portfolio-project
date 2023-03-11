@@ -1,20 +1,41 @@
-const darkMode = document.querySelector(".dark-mode")
-const toggledarkMode = () => {
+const themeButton = document.querySelector(".theme-btn")
+const toggleTheme = () => {
+    // alert('works')
     const body = document.querySelector("body")
-    const labels = document.querySelectorAll("label")
+    const mainContainer = document.querySelector(".main-container")
+
 
     if (body.style.backgroundColor === "black") {
         body.style.backgroundColor = "white"
-        darkMode.innerHTML = "Dark Mode"
-        menuIcon.style.color = "rgba(42, 59, 73, 1)"
+        themeButton.innerHTML = "Dark Mode"
+        menuIcon.style.color = "rgb(53, 50, 50)"
+        mainContainer.querySelector("p").style.color = "white";
+        mainContainer.querySelector("a").style.color = "white";
+        mainContainer.querySelector("h2").style.color = "white";
     } else {
-        body.style.backgroundColor = "rgba(42, 59, 73, 1)"
-        darkMode.innerHTML = "Light Mode"
+        body.style.backgroundColor = "black"
+        themeButton.innerHTML = "Light Mode"
         menuIcon.style.color = "white"
-        for (let i = 0; i < labels.length; i++) {
-            labels[i].style.color = 'white';
-        }
+        mainContainer.querySelector("p").style.color = "black";
+        mainContainer.querySelector("a").style.color = "black";
+        mainContainer.querySelector("h2").style.color = "black";
     }
 
 }
-darkMode.onclick = toggledarkMode;
+themeButton.onclick = toggleTheme;
+// Event Listener
+toggleSwitch.addEventListener('change', switchTheme);
+
+//We create function that dynamically changes the theme
+// Switch Theme Dynamically
+function switchTheme(event) {
+    if (event.target.clicked) {
+        document.documentElement.setAttribute('data-theme', 'rgb(53, 50, 50)');
+        localStorage.setItem('theme', 'rgb(53, 50, 50)');
+        toggleDarkLightMode(DARK_THEME);
+    } else {
+        document.documentElement.setAttribute('data-theme', 'light');
+        localStorage.setItem('theme', 'light');
+        toggleDarkLightMode(LIGHT_THEME);
+    }
+}

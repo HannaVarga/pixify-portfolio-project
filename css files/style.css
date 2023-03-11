@@ -95,3 +95,7 @@ button {
     text-align: center;
     background-color: transparent;
 }
+
+#submit-btn {
+    color: var(--btn-text-color);
+}
