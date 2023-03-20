@@ -57,36 +57,133 @@ const toggleTheme = () => {
     const mainContainer = document.querySelector(".main-container")
 
 
-    if (body.style.backgroundColor === "black") {
+    if (body.style.backgroundColor === "rgb(42, 59, 73)") {
         body.style.backgroundColor = "white"
         themeButton.innerHTML = "Dark Mode"
-        mainContainer.querySelector("p").style.color = "white";
-        mainContainer.querySelector("a").style.color = "white";
-        mainContainer.querySelector("h2").style.color = "white";
-    } else {
-        body.style.backgroundColor = "black"
-        themeButton.innerHTML = "Light Mode"
-        mainContainer.querySelector("p").style.color = "black";
-        mainContainer.querySelector("a").style.color = "black";
         mainContainer.querySelector("h2").style.color = "black";
-    }
-
-}
-themeButton.onclick = toggleTheme;
-// Event Listener
-toggleSwitch.addEventListener('click', switchTheme);
-
-//We create function that dynamically changes the theme
-// Switch Theme Dynamically
-function switchTheme(event) {
-    if (event.target.clicked) {
-        document.documentElement.setAttribute('data-theme', 'rgba(42, 59, 73, 1)');
-        localStorage.setItem('theme', 'rgba(42, 59, 73, 1)');
-        toggleDarkLightMode(DARK_THEME);
     } else {
-        document.documentElement.setAttribute('data-theme', 'light');
-        localStorage.setItem('theme', 'light');
-        toggleDarkLightMode(LIGHT_THEME);
+        body.style.backgroundColor = "rgb(42, 59, 73)"
+        themeButton.innerHTML = "Light Mode"
+        mainContainer.querySelector("h2").style.color = "white";
+    }
+    //Add event listener to the toggle switch. We use the change event.
+    const toggleSwitch = document.querySelector('input[type="checkbox"]');
+
+    // Switch Theme Dynamically
+    //...
+
+
+    // Event Listener
+    toggleSwitch.addEventListener('change', switchTheme);
+
+    //We create function that dynamically changes the theme
+    // Switch Theme Dynamically
+    function switchTheme(event) {
+        if (event.target.checked) {
+            document.documentElement.setAttribute('data-theme', 'dark');
+            localStorage.setItem('theme', 'dark');
+            toggleDarkLightMode(DARK_THEME);
+        } else {
+            document.documentElement.setAttribute('data-theme', 'light');
+            localStorage.setItem('theme', 'light');
+            toggleDarkLightMode(LIGHT_THEME);
+        }
     }
 }
-const themToggleBtn = document.querySelector('.theme-toggle-btn');
+const form = document.getElementById('form');
+const fullname = document.getElementById('name');
+const picturetitle = document.getElementById('title');
+const imgOne = document.getElementById('img-one');
+const imgTwo = document.getElementById('img-two');
+const imgThree = document.getElementById('img-three');
+const imgFour = document.getElementById('img-four');
+const imgFive = document.getElementById('img-five');
+
+form.addEventListener('submit', e => {
+    e.preventDefault();
+
+    validateInputs();
+});
+const setError = (element, message) => {
+    const inputControl = element.parentElement;
+    const errorDisplay = inputControl.querySelector('.error');
+
+    errorDisplay.innerText = message;
+    inputControl.classList.add('error');
+    inputControl.classList.remove('success')
+}
+
+const setSuccess = element => {
+    const inputControl = element.parentElement;
+    const errorDisplay = inputControl.querySelector('.error');
+
+    errorDisplay.innerText = '';
+    inputControl.classList.add('success');
+    inputControl.classList.remove('error');
+};
+
+const isValidName = name => {
+    const re = "John Doe";
+    return re.test(String(name).toUpperCase());
+}
+
+const validateInputs = () => {
+    const fullnameValue = fullname.value.trim();
+    const titleValue = title.value.trim();
+    const imgOneValue = imgOne.value.trim();
+    const imgTwo = imgTwo.value.trim();
+    const imgThree = imgThree.value.trim();
+    const imgFour = imgFour.value.trim();
+    const imgFive = imgFive.value.trim();
+
+    if (fullnameValue === '') {
+        setError(fullname, ' Full name is required');
+    } else {
+        setSuccess(username);
+    }
+
+    if (titleValue === '') {
+        setError("", 'Title is required!');
+    } else if (!istitleValid(titleValue)) {
+        setError(title, 'Provide a valid title');
+    } else {
+        setSuccess(title);
+    }
+
+    if (imgOneValue === '') {
+        setError(imgOne, 'Url is required');
+    } else if (imgOne.length < 80) {
+        setError(imgOne, 'Url must be at least 80 character.')
+    } else {
+        setSuccess(imgOne);
+    }
+
+    if (imgTwoValue === '') {
+        setError(imgTwo, 'Url is required');
+    } else if (imgTwo.length < 80) {
+        setError(imgTwo, 'Url must be at least 80 character.')
+    } else {
+        setSuccess(imgTwo);
+    }
+    if (imgThreeValue === '') {
+        setError(imgThree, 'Url is required');
+    } else if (imgThree.length < 80) {
+        setError(imgThree, 'Url must be at least 80 character.')
+    } else {
+        setSuccess(imgThree);
+    }
+    if (imgFourValue === '') {
+        setError(imgFour, 'Url is required');
+    } else if (imgFour.length < 80) {
+        setError(imgFour, 'Url must be at least 80 character.')
+    } else {
+        setSuccess(imgFour);
+    }
+    if (imgFiveValue === '') {
+        setError(imgFive, 'Url is required');
+    } else if (imgFive.length < 80) {
+        setError(imgFive, 'Url must be at least 80 character.')
+    } else {
+        setSuccess(imgFive);
+    }
+};

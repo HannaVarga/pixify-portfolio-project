@@ -16,11 +16,11 @@
         <nav>
             <a>2023 Submissions</a>
             <a href="../html files/about us.html">About</a>
-            <a class="theme-btn" onclick="toggleTheme()">Dark Mode</a>
+            <a class="theme-btn" onclick="toggleTheme()" type="onclick">Dark Mode</a>
         </nav>
     </header>
     <main class="main-container">
-        <div class="submissons-container">
+        <div class="submissons-picture-container">
             <h2>2023 SUBMISSIONS</h2>
             <div class="picture-container">
                 <img src="../assets/david-marcu-78A265wPiO4-unsplash 1.jpg" alt="mountains" title="Nature Adventures - Jane Doe see more">
@@ -31,16 +31,18 @@
                 <img src="../assets/david-marcu-78A265wPiO4-unsplash 1.jpg" alt="mountains" title="Nature Adventures - Jane Doe see more">
             </div>
         </div>
-        <form action="/action_page.php">
+        <form class="submissons-form-container" id="form" action="/">
             <h3>SUBMIT YOUR WORK</h3>
-            <input type="text" id="name" name="name" value="Your Name">
-            <input type="text" id="title" name="title" value="Title of Your Entry">
-            <input type="url" value="Image Url One">
-            <input type="url" value="Image Url Two">
-            <input type="url" value="Image Url Three">
-            <input type="url" value="Image Url Four">
-            <input type="url" value="Image Url Five">
-            <button type="submit ">SUBMIT</button>
+            <!-- <div class="input-container"> -->
+            <input type="text " id="name " name="name " value="Your Name" required>
+            <input type="text " id="title " name="title " value="Title of Your Entry" required>
+            <input type="text" id="img-one" value="Image Url One" required accept="image/jpg, image/png">
+            <input type="text " id="img-two" value="Image Url Two" required accept="image/jpg, image/png">
+            <input type="text" id="img-three" value="Image Url Three" required accept="image/jpg, image/png">
+            <input type="text" id="img-four" value="Image Url Four" required accept="image/jpg, image/png">
+            <input type="text" id="img-five" value="Image Url Five" required accept="image/jpg, image/png">
+            <button type="submit" id="submit-button" required>SUBMIT</button>
+            <!-- </div> -->
         </form>
     </main>
     <script src=" ../java script files/submissons.js ">
