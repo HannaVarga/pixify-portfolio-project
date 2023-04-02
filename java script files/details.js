@@ -48,55 +48,126 @@ const imageSets = [{
     }
 
 ];
+
 const themeButton = document.querySelector(".theme-btn")
 const toggleTheme = () => {
-    // alert('works')
-    const body = document.querySelector("body")
-    const mainContainer = document.querySelector(".main-container")
-    const buttonContainer = document.querySelector(".button-container")
+        // alert('works')
+        const body = document.querySelector("body")
+        const mainContainer = document.querySelector(".main-container")
+        const buttonContainer = document.querySelector(".button-container")
 
 
-    if (body.style.backgroundColor === "rgb(42, 59, 73)") {
-        body.style.backgroundColor = "white"
-        themeButton.innerHTML = "Dark Mode"
-        mainContainer.querySelector("h2").style.color = "black";
-        mainContainer.querySelector("h3").style.color = "black";
-        mainContainer.querySelector("p").style.color = "black";
-        buttonContainer.querySelector("#previous-btn").style.color = "rgba(123, 255, 233)";
-        buttonContainer.querySelector("#next-btn").style.color = "rgba(123, 255, 233)";
-    } else {
-        body.style.backgroundColor = "rgb(42, 59, 73)"
-        themeButton.innerHTML = "Light Mode"
-        mainContainer.querySelector("h2").style.color = "white";
-        mainContainer.querySelector("h3").style.color = "white";
-        mainContainer.querySelector("p").style.color = "white";
-        buttonContainer.querySelector("#previous-btn").style.color = "rgba(123, 255, 233)";
-        buttonContainer.querySelector("#next-btn").style.color = "rgba(123, 255, 233)";
-        buttonContainer.querySelector("#previous-btn").style.borderColor = "rgba(123, 255, 233)";
-        buttonContainer.querySelector("#next-btn").style.borderColor = "rgba(123, 255, 233)";
-
-    }
-    //Add event listener to the toggle switch. We use the change event.
-    const toggleSwitch = document.querySelector('a[type="onclick"]');
-
-    // Switch Theme Dynamically
-    //...
-
-
-    // Event Listener
-    toggleSwitch.addEventListener('change', switchTheme);
-
-    //We create function that dynamically changes the theme
-    // Switch Theme Dynamically
-    function switchTheme(event) {
-        if (event.target.checked) {
-            document.documentElement.setAttribute('data-theme', 'dark');
-            localStorage.setItem('theme', 'dark');
-            toggleDarkLightMode(DARK_THEME);
+        if (body.style.backgroundColor === "rgb(42, 59, 73)") {
+            body.style.backgroundColor = "white"
+            themeButton.innerHTML = "Dark Mode"
+            mainContainer.querySelector("h2").style.color = "black";
+            mainContainer.querySelector("h3").style.color = "black";
+            mainContainer.querySelector("p").style.color = "black";
+            buttonContainer.querySelector("#previous-btn").style.color = "rgba(123, 255, 233)";
+            buttonContainer.querySelector("#next-btn").style.color = "rgba(123, 255, 233)";
         } else {
-            document.documentElement.setAttribute('data-theme', 'light');
-            localStorage.setItem('theme', 'light');
-            toggleDarkLightMode(LIGHT_THEME);
+            body.style.backgroundColor = "rgb(42, 59, 73)"
+            themeButton.innerHTML = "Light Mode"
+            mainContainer.querySelector("h2").style.color = "white";
+            mainContainer.querySelector("h3").style.color = "white";
+            mainContainer.querySelector("p").style.color = "white";
+            buttonContainer.querySelector("#previous-btn").style.color = "rgba(123, 255, 233)";
+            buttonContainer.querySelector("#next-btn").style.color = "rgba(123, 255, 233)";
+            buttonContainer.querySelector("#previous-btn").style.borderColor = "rgba(123, 255, 233)";
+            buttonContainer.querySelector("#next-btn").style.borderColor = "rgba(123, 255, 233)";
+
+        }
+        //Add event listener to the toggle switch. We use the change event.
+        const toggleSwitch = document.querySelector('a[type="onclick"]');
+
+        // Switch Theme Dynamically
+        //...
+
+
+        // Event Listener
+        toggleSwitch.addEventListener('change', switchTheme);
+
+        //We create function that dynamically changes the theme
+        // Switch Theme Dynamically
+        function switchTheme(event) {
+            if (event.target.checked) {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                localStorage.setItem('theme', 'dark');
+                toggleDarkLightMode(DARK_THEME);
+            } else {
+                document.documentElement.setAttribute('data-theme', 'light');
+                localStorage.setItem('theme', 'light');
+                toggleDarkLightMode(LIGHT_THEME);
+            }
         }
     }
-}
+    //**function that get appends a new anchor link inside an empty div within our HTML **/
+    // const displayImages = ((list) => {
+    //     const imagesContainer = document.getElementById("imgs-section");
+    //     const allImages = list.map(images => {
+    //         return `<a class="cards" href="./Details.html?id=${images.id}">
+    //       <img src=${images.images} alt=${images.title} class="card-image"/>
+    //       <div class="card-info">
+    //           <p>${images.title} - ${images.name}</p>
+    //           <p class="item-category">see more</p>
+    //         </div>
+    //   </a>`
+    //     })
+    //     imagesContainer.innerHTML = allImages.join("");
+    // });
+    // window.onload = function() {
+    //     displayImages(imageSets);
+    // };
+
+//**Details **/
+// let currentImage;
+// let urlParams;
+// let id;
+// window.onload = function() {
+//     urlParams = new URLSearchParams(window.location.search);
+//     id = urlParams.get("id");
+
+//     currentImage = imageSets.filter(item => item.id == id)[0];
+//     console.log(currentImage);
+//     if (currentImage) {
+//         const img = document.createElement("img");
+//         img.src = currentImage.images;
+//         img.setAttribute("class", "added-img")
+//         const imgSection = document.querySelector(".imgs-section");
+//         imgSection.appendChild(img);
+//         document.querySelector(".title-image").innerText = `${currentImage.title}`;
+//         document.querySelector(".name-image").innerText = `${currentImage.name}`;
+//         const firstImage = 0;
+//         const lastImage = currentImage.images.length - 1;
+//         let selectedImage = 0;
+//         //Next
+//         const nextBtn = document.getElementById('next');
+//         nextBtn.addEventListener("click", () => {
+//             ``
+//             // get image tag
+//             const imageTag = document.querySelector(".added-img");
+//             selectedImage++; // 1
+//             if (selectedImage >= lastImage) {
+//                 selectedImage = 4;
+//             }
+//             // try to console log this portion 
+//             imageTag.src = currentImage.images[selectedImage]
+//                 // ^^^^^^^
+
+//             document.getElementById('info').innerHTML = (selectedImage + 1) + " of 5";
+//         });
+
+//         const prevBtn = document.getElementById("prev");
+//         prevBtn.addEventListener('click', () => {
+//             const imageTag = document.querySelector(".added-img");
+//             selectedImage--; // 1
+//             if (selectedImage <= firstImage) {
+//                 selectedImage = 0;
+//             }
+//             // try to console log this portion 
+//             imageTag.src = currentImage.images[selectedImage]
+//                 // ^^^^^^^
+//             document.getElementById('info').innerHTML = (selectedImage + 1) + " of 5";
+//         });
+//     }
+// };
