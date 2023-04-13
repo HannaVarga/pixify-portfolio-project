@@ -149,28 +149,26 @@ const getFormValues = (e) => {
 
 
 //         //**appends a new anchor link inside an empty div within our HTML **/
-//         const divTag = document.createElement("div");
-//         divTag.setAttribute("class", "cards");
-//         divTag.setAttribute("href", "./Details.html");
-//         divTag.innerHTML = `<a class="cards" href="./Details.html">
-//     <img src=${image1} alt=${title} class="card-image"/>
-//     <div class="card-info">
-//         <p>${title} - ${name}</p>
-//         <p class="item-category">see more</p>
-//       </div>
-//   </a>`;
+const divTag = document.createElement("div");
+divTag.setAttribute("class", "cards");
+divTag.setAttribute("href", "./Details.html");
+divTag.innerHTML = `<a class="cards" href="./Details.html">
+    <img src=${image1} alt=${title} class="card-image"/>
+    <div class="card-info">
+        <p>${title} - ${name}</p>
+        <p class="item-category">see more</p>
+      </div>
+  </a>`;
 //         //**Target the empty container**/
-//         const imagesContainer = document.getElementById("imgs-section");
+const imagesContainer = document.querySelector("picture-container");
 //         //**Apply the newest anchor element within the empty container on the top **/
-//         imagesContainer.insertBefore(divTag, imagesContainer.firstChild);
+pictureContainer.insertBefore(divTag, pictureContainer.firstChild);
 //         //**Removes the prior input values for user experience**/
-//         document.querySelector('input[name="name"]').value = "";
-//         document.querySelector('input[name="title"]').value = "";
-//         //** loop to target each input name for better code refactoring**/
-//         for (let i = 1; i < 6; i++) {
-//             document.querySelector(`input[name="imageUrl${i}"]`).value = "";
-//         }
-//     }
-// };
+document.querySelector('input[name="name"]').value = "";
+document.querySelector('input[name="title"]').value = "";
+//** loop to target each input name for better code refactoring**/
+for (let i = 1; i < 6; i++) {
+    document.querySelector(`input[name="imageUrl${i}"]`).value = "";
+}
 const form = document.getElementById("form");
 form.addEventListener("submit", getFormValues);
