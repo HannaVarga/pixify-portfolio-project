@@ -62,24 +62,11 @@ const toggleTheme = () => {
         themeButton.innerHTML = "Dark Mode"
         mainContainer.querySelector("h2").style.color = "black";
         pictureContainer.querySelector(".submissons-picture-container").style.color = "rgba(123, 255, 233)";
-        // mainContainer.querySelector("p").style.color = "black";
-        // details.querySelector("#our-misson").style.color = "black";
-        // details.querySelector("#at-pixify").style.color = "black";
-        // details.querySelector("#contest").style.color = "black";
-        // details.querySelector("#deadline").style.color = "black";
-        // details.querySelector("#subbmissons-page").style.color = "rgba(123, 255, 233)";
     } else {
         body.style.backgroundColor = "rgb(42, 59, 73)"
         themeButton.innerHTML = "Light Mode"
         mainContainer.querySelector("h2").style.color = "white";
         pictureContainer.querySelector(".submissons-picture-container").style.color = "white";
-        // mainContainer.querySelector("p").style.color = "white";
-        // details.querySelector("#our-misson").style.color = "white";
-        // details.querySelector("#at-pixify").style.color = "white";
-        // details.querySelector("#contest").style.color = "white";
-        // details.querySelector("#deadline").style.color = "white";
-        // details.querySelector("#subbmissons-page").style.color = "rgba(123, 255, 233)";
-        // details.querySelector("#subbmissons-page").style.borderColor = "rgba(123, 255, 233)";
     }
     //Add event listener to the toggle switch. We use the change event.
     const toggleSwitch = document.querySelector('a[type="onclick"]');
@@ -107,41 +94,59 @@ const toggleTheme = () => {
 }
 
 //**Get the values from the form **/
-const formBtn = document.querySelector("#submit - button");
+
 const getFormValues = (e) => {
     //** Preventing the default function **/
     e.preventDefault();
     //**Target each input within our html**/
     const name = document.querySelector('input[name="name"]').value;
-    const title = document.querySelector('input[name="title"]').value;
-    const image1 = document.querySelector('input[name="imageUrl1"]').value;
-    const image2 = document.querySelector('input[name="imageUrl2"]').value;
-    const image3 = document.querySelector('input[name="imageUrl3"]').value;
-    const image4 = document.querySelector('input[name="imageUrl4"]').value;
-    const image5 = document.querySelector('input[name="imageUrl5"]').value;
+    const title = document.querySelector('input[title="title"]').value;
+    const image1 = document.querySelector('input[image1="imageUrl1"]').value;
+    const image2 = document.querySelector('input[image2="imageUrl2"]').value;
+    const image3 = document.querySelector('input[image3="imageUrl3"]').value;
+    const image4 = document.querySelector('input[image4="imageUrl4"]').value;
+    const image5 = document.querySelector('input[image5="imageUrl5"]').value;
     //     //**Target the empty element within our HTML **/
-    const redAlert = document.querySelector(".alert");
+    // const redAlert = document.querySelector(".alert");
     //     //**Pass in a condition that checks if form is empty**/
     if (name == "") {
-        alert("Please fill out the name field");
-    } else if (title == "") {
-        alert("Please fill out the title field")
-    } else if (image1 == "") {
-        alert("Please fill out the URL for Image One")
-    } else if (image2 == "") {
-        alert("Please fill out the URL for Image Two")
-    } else if (image3 == "") {
-        alert("Please fill out the URL for Image Three")
-    } else if (image4 == "") {
-        alert("Please fill out the URL for Image Four")
-    } else if (image5 == "") {
-        alert("Please fill out the URL for Image Five")
-    } else {
-        //         //**Display the user a thank you message for filling form **/
-        redAlert.innerText = "Thank You For Submitting!"
-        redAlert.style.color = "#AAFF00";
+        const nameError = document.getElementById("name-error")
+        nameError.innerText = "Please fill out the title field";
     }
+    console.log("Form submitted");
+
+    if (title == "") {
+        const titleError = document.getElementById("title-error")
+        titleError.innerText = "Please fill out the name field";
+    }
+    console.log("Form submitted");
+    if (image1 == "") {
+        const image1Error = document.getElementById("image-one-error")
+        image1Error.innerText = "Please fill out the image field";
+    }
+    console.log("Form submitted");
+    if (image2 == "") {
+        const image2Error = document.getElementById("image-two-error")
+        image2Error.innerText = "Please fill out the image field";
+    }
+    console.log("Form submitted");
+    if (image3 == "") {
+        const image3Error = document.getElementById("image-three-error")
+        image3Error.innerText = "Please fill out the image field";
+    }
+    console.log("Form submitted");
+    if (image4 == "") {
+        const image4Error = document.getElementById("image-four-error")
+        image4Error.innerText = "Please fill out the image field";
+    }
+    console.log("Form submitted");
+    if (image5 == "") {
+        const image5Error = document.getElementById("image-five-error")
+        image5Error.innerText = "Please fill out the image field";
+    }
+    console.log("Form submitted");
 };
+
 
 //         //**appends a new anchor link inside an empty div within our HTML **/
 //         const divTag = document.createElement("div");
@@ -167,4 +172,5 @@ const getFormValues = (e) => {
 //         }
 //     }
 // };
-// formBtn.addEventListener("click", getFormValues);
+const form = document.getElementById("form");
+form.addEventListener("submit", getFormValues);
