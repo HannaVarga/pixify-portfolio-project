@@ -98,6 +98,8 @@ const toggleTheme = () => {
 const getFormValues = (e) => {
     //** Preventing the default function **/
     e.preventDefault();
+
+
     //**Target each input within our html**/
     const name = document.querySelector('input[name="name"]').value;
     const title = document.querySelector('input[name="title"]').value;
@@ -162,3 +164,10 @@ const getFormValues = (e) => {
 };
 const form = document.getElementById("form");
 form.addEventListener("submit", getFormValues);
+
+let output = document.getElementById('output');
+const formToReset = document.getElementById('form');
+formToReset.addEventListener('submit', (e) => {
+    e.preventDefault();
+    formToReset.reset();
+});
