@@ -104,54 +104,54 @@ const toggleTheme = () => {
 
 
 //**Details **/
-// let currentImage;
-// let urlParams;
-// let id;
-// window.onload = function() {
-//     urlParams = new URLSearchParams(window.location.search);
-//     id = urlParams.get("id");
+let currentImage;
+let urlParams;
+let id;
+window.onload = function() {
+    urlParams = new URLSearchParams(window.location.search);
+    id = urlParams.get("id");
 
-//     currentImage = imageSets.filter(item => item.id == id)[0];
-//     console.log(currentImage);
-//     if (currentImage) {
-//         const img = document.createElement("img");
-//         img.src = currentImage.images;
-//         img.setAttribute("class", "added-img")
-//         const imgSection = document.querySelector(".imgs-section");
-//         imgSection.appendChild(img);
-//         document.querySelector(".title-image").innerText = `${currentImage.title}`;
-//         document.querySelector(".name-image").innerText = `${currentImage.name}`;
-//         const firstImage = 0;
-//         const lastImage = currentImage.images.length - 1;
-//         let selectedImage = 0;
-//         //Next
-//         const nextBtn = document.getElementById('next');
-//         nextBtn.addEventListener("click", () => {
-//             ``
-//             // get image tag
-//             const imageTag = document.querySelector(".added-img");
-//             selectedImage++; // 1
-//             if (selectedImage >= lastImage) {
-//                 selectedImage = 4;
-//             }
-//             // try to console log this portion 
-//             imageTag.src = currentImage.images[selectedImage]
-//                 // ^^^^^^^
+    currentImage = imageSets.filter(item => item.id == id)[0];
+    console.log(currentImage);
+    if (currentImage) {
+        const img = document.createElement("img");
+        img.src = currentImage.images;
+        img.setAttribute("class", "added-img")
+        const imgSection = document.querySelector(".imgs-section");
+        imgSection.appendChild(img);
+        document.querySelector(".title-image").innerText = `${currentImage.title}`;
+        document.querySelector(".name-image").innerText = `${currentImage.name}`;
+        const firstImage = 0;
+        const lastImage = currentImage.images.length - 1;
+        let selectedImage = 0;
+        //Next
+        const nextBtn = document.getElementById('next');
+        nextBtn.addEventListener("click", () => {
+            ``
+            // get image tag
+            const imageTag = document.querySelector(".added-img");
+            selectedImage++; // 1
+            if (selectedImage >= lastImage) {
+                selectedImage = 4;
+            }
+            // try to console log this portion 
+            imageTag.src = currentImage.images[selectedImage]
+                // ^^^^^^^
 
-//             document.getElementById('info').innerHTML = (selectedImage + 1) + " of 5";
-//         });
+            document.getElementById('info').innerHTML = (selectedImage + 1) + " of 5";
+        });
 
-//         const prevBtn = document.getElementById("prev");
-//         prevBtn.addEventListener('click', () => {
-//             const imageTag = document.querySelector(".added-img");
-//             selectedImage--; // 1
-//             if (selectedImage <= firstImage) {
-//                 selectedImage = 0;
-//             }
-//             // try to console log this portion 
-//             imageTag.src = currentImage.images[selectedImage]
-//                 // ^^^^^^^
-//             document.getElementById('info').innerHTML = (selectedImage + 1) + " of 5";
-//         });
-//     }
-// };
+        const prevBtn = document.getElementById("prev");
+        prevBtn.addEventListener('click', () => {
+            const imageTag = document.querySelector(".added-img");
+            selectedImage--; // 1
+            if (selectedImage <= firstImage) {
+                selectedImage = 0;
+            }
+            // try to console log this portion 
+            imageTag.src = currentImage.images[selectedImage]
+                // ^^^^^^^
+            document.getElementById('info').innerHTML = (selectedImage + 1) + " of 5";
+        });
+    }
+};

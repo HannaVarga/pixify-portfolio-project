@@ -100,75 +100,65 @@ const getFormValues = (e) => {
     e.preventDefault();
     //**Target each input within our html**/
     const name = document.querySelector('input[name="name"]').value;
-    const title = document.querySelector('input[title="title"]').value;
-    const image1 = document.querySelector('input[image1="imageUrl1"]').value;
-    const image2 = document.querySelector('input[image2="imageUrl2"]').value;
-    const image3 = document.querySelector('input[image3="imageUrl3"]').value;
-    const image4 = document.querySelector('input[image4="imageUrl4"]').value;
-    const image5 = document.querySelector('input[image5="imageUrl5"]').value;
+    const title = document.querySelector('input[name="title"]').value;
+    const image1 = document.querySelector('input[name="imageUrl1"]').value;
+    const image2 = document.querySelector('input[name="imageUrl2"]').value;
+    const image3 = document.querySelector('input[name="imageUrl3"]').value;
+    const image4 = document.querySelector('input[name="imageUrl4"]').value;
+    const image5 = document.querySelector('input[name="imageUrl5"]').value;
     //     //**Target the empty element within our HTML **/
     // const redAlert = document.querySelector(".alert");
     //     //**Pass in a condition that checks if form is empty**/
+    let error = false;
     if (name == "") {
         const nameError = document.getElementById("name-error")
         nameError.innerText = "Please fill out the title field";
+        error = true;
     }
     console.log("Form submitted");
 
     if (title == "") {
         const titleError = document.getElementById("title-error")
         titleError.innerText = "Please fill out the name field";
+        error = true;
     }
     console.log("Form submitted");
     if (image1 == "") {
         const image1Error = document.getElementById("image-one-error")
         image1Error.innerText = "Please fill out the image field";
+        error = true;
     }
     console.log("Form submitted");
     if (image2 == "") {
         const image2Error = document.getElementById("image-two-error")
         image2Error.innerText = "Please fill out the image field";
+        error = true;
     }
     console.log("Form submitted");
     if (image3 == "") {
         const image3Error = document.getElementById("image-three-error")
         image3Error.innerText = "Please fill out the image field";
+        error = true;
     }
     console.log("Form submitted");
     if (image4 == "") {
         const image4Error = document.getElementById("image-four-error")
         image4Error.innerText = "Please fill out the image field";
+        error = true;
     }
     console.log("Form submitted");
     if (image5 == "") {
         const image5Error = document.getElementById("image-five-error")
         image5Error.innerText = "Please fill out the image field";
+        error = true;
     }
     console.log("Form submitted");
+    if (error === false) {
+        const newSubmisson = document.createElement("div");
+        newSubmisson.innerHTML = `<img src =${image1}>`
+        const submissonsContainer = document.getElementById("imgs-section");
+        submissonsContainer.appendChild(newSubmisson);
+    }
 };
-
-
-//         //**appends a new anchor link inside an empty div within our HTML **/
-const divTag = document.createElement("div");
-divTag.setAttribute("class", "cards");
-divTag.setAttribute("href", "./Details.html");
-divTag.innerHTML = `<a class="cards" href="./Details.html">
-    <img src=${image1} alt=${title} class="card-image"/>
-    <div class="card-info">
-        <p>${title} - ${name}</p>
-        <p class="item-category">see more</p>
-      </div>
-  </a>`;
-//         //**Target the empty container**/
-const imagesContainer = document.querySelector("picture-container");
-//         //**Apply the newest anchor element within the empty container on the top **/
-pictureContainer.insertBefore(divTag, pictureContainer.firstChild);
-//         //**Removes the prior input values for user experience**/
-document.querySelector('input[name="name"]').value = "";
-document.querySelector('input[name="title"]').value = "";
-//** loop to target each input name for better code refactoring**/
-for (let i = 1; i < 6; i++) {
-    document.querySelector(`input[name="imageUrl${i}"]`).value = "";
-}
 const form = document.getElementById("form");
 form.addEventListener("submit", getFormValues);
