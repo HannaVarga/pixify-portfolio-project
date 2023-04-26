@@ -48,8 +48,30 @@ const imageSets = [{
     }
 
 ];
+// Compiles all images into one array, randomizes them, then isolates the first 6 to be displayed in the Submissions HTML.
+const randomizedImages = imageSets.reduce((acc, curr) => acc.concat(curr.images), []).sort(() => 0.5 - Math.random()).slice(0, 6);
 
+// Moves the 6 images into the HTML, including their title and name.
+const submissionsContainer = document.querySelector('.submissons-picture-container');
+const imagesHtml = randomizedImages.map(image => {
+    let name = '';
+    let title = '';
+    imageSets.forEach(imageSet => {
+        if (imageSet.images.includes(image)) {
+            name = imageSet.name;
+            title = imageSet.title;
+        }
+    });
+    return `
+    <a href="../html files/details page.html?name=${name}">
+      <img src="${image}" alt="${title}"/>
+      <h3 id="h3-text">${name} - ${title}</h3>
+    </a>
+  `;
+});
+submissionsContainer.innerHTML = imagesHtml.join('');
 
+// Dark Mode
 const themeButton = document.querySelector(".theme-btn")
 const toggleTheme = () => {
     // alert('works')

@@ -18,16 +18,15 @@
             <a class="theme-btn" onclick="toggleTheme()" type="onclick">Dark Mode</a>
         </nav>
     </header>
-    <div class="main-container">
-        <main>
-            <h2>WILD ANIMALS</h2>
-            <h3>Jane Doe</h3>
-            <img src="../assets/gwen-weustink-I3C1sSXj1i8-unsplash 1.jpg" alt="picture of a lepard">
-            <p>2 of 5</p>
+    <!-- Details Container -->
+    <div id="details-container">
+        <div id="details-title"></div>
+        <div id="details-name"></div>
+        <div id="details-image"></div>
         </main>
         <div class="button-container">
-            <button id="previous-btn">Previous</button>
-            <button id="next-btn">Next</button>
+            <button onclick="previous()" id="previous-btn">Previous</button>
+            <button onclick="next()" id="next-btn">Next</button>
         </div>
     </div>
     <script src="../java script files/details.js">

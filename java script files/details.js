@@ -48,6 +48,7 @@ const imageSets = [{
     }
 
 ];
+// Dark Mode
 
 const themeButton = document.querySelector(".theme-btn")
 const toggleTheme = () => {
@@ -81,7 +82,6 @@ const toggleTheme = () => {
     const toggleSwitch = document.querySelector('a[type="onclick"]');
 
     // Switch Theme Dynamically
-    //...
 
 
     // Event Listener
@@ -103,55 +103,58 @@ const toggleTheme = () => {
 }
 
 
-//**Details **/
+// Global Variables
 let currentImage;
-let urlParams;
-let id;
+let imageURLs;
+let counter = 0;
+
+// Populates the page upon loading
 window.onload = function() {
-    urlParams = new URLSearchParams(window.location.search);
-    id = urlParams.get("id");
+    const urlParams = new URLSearchParams(window.location.search);
+    currentImage = urlParams.get("name");
+    currentImage = currentImage.replace("%20", " ");
 
-    currentImage = imageSets.filter(item => item.id == id)[0];
-    console.log(currentImage);
-    if (currentImage) {
-        const img = document.createElement("img");
-        img.src = currentImage.images;
-        img.setAttribute("class", "added-img")
-        const imgSection = document.querySelector(".imgs-section");
-        imgSection.appendChild(img);
-        document.querySelector(".title-image").innerText = `${currentImage.title}`;
-        document.querySelector(".name-image").innerText = `${currentImage.name}`;
-        const firstImage = 0;
-        const lastImage = currentImage.images.length - 1;
-        let selectedImage = 0;
-        //Next
-        const nextBtn = document.getElementById('next');
-        nextBtn.addEventListener("click", () => {
-            ``
-            // get image tag
-            const imageTag = document.querySelector(".added-img");
-            selectedImage++; // 1
-            if (selectedImage >= lastImage) {
-                selectedImage = 4;
-            }
-            // try to console log this portion 
-            imageTag.src = currentImage.images[selectedImage]
-                // ^^^^^^^
+    // Locates the image that matches the currentImage.
+    const currentPic = imageSets.filter(item => item.name === currentImage);
+    imageURLs = currentPic[0].images;
 
-            document.getElementById('info').innerHTML = (selectedImage + 1) + " of 5";
-        });
+    // Populates the page.
+    const detailsTitle = document.querySelector("#details-title");
+    const detailsName = document.querySelector("#details-name");
+    const detailsImage = document.querySelector("#details-image");
 
-        const prevBtn = document.getElementById("prev");
-        prevBtn.addEventListener('click', () => {
-            const imageTag = document.querySelector(".added-img");
-            selectedImage--; // 1
-            if (selectedImage <= firstImage) {
-                selectedImage = 0;
-            }
-            // try to console log this portion 
-            imageTag.src = currentImage.images[selectedImage]
-                // ^^^^^^^
-            document.getElementById('info').innerHTML = (selectedImage + 1) + " of 5";
-        });
+    detailsTitle.innerHTML = `
+  <h1 id="details-title">${currentPic[0].title}</h1>`
+    detailsName.innerHTML = `
+  <h2 id="details-name">${currentPic[0].name}</h2>`
+    const imagePicture = `
+  <img id="details-image" src=${imageURLs[counter]}/><p id="details-counter">${counter + 1} of ${imageURLs.length}<p>`
+    detailsImage.innerHTML = imagePicture;
+}
+
+
+
+// Previous/Next Buttons
+let imgContainer = document.querySelector("#details-image");
+
+function previous() {
+    counter--;
+    if (counter === -1) {
+        counter = 4;
     }
+    let pic = `
+  <img id="details-image" src=${imageURLs[counter]}/>
+  <p id="details-counter">${counter + 1} of ${imageURLs.length}<p>`
+    imgContainer.innerHTML = pic;
+};
+
+function next() {
+    counter++;
+    if (counter === 5) {
+        counter = 0;
+    }
+    let pic = `
+  <img id="details-image" src=${imageURLs[counter]}/>
+  <p id="details-counter">${counter + 1} of ${imageURLs.length}<p>`
+    imgContainer.innerHTML = pic;
 };
